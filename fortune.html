@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header class="header">
+      <p class="logo">
+        <img
+          class="cookie"
+          id="img-cookiee"
+          src="./img/biscoito-da-sorte.png"
+          alt="biscoito da sorte"
+        />Fortune Cookie
+      </p>
+      <ul>
+        <li><a id="home" class="action" href="./home.html">Inicio</a></li>
+        <li><a id="fortune" class="" href="./fortune.html">Sorte</a></li>
+      </ul>
+    </header>
+    <section class="container">
+      <img
+        class="cookiee-open"
+        id="img"
+        src="./img/biscoito.png"
+        alt="Biscoito Chines"
+      />
+      <button id="open-cookiee" onclick="trocar()">Abrir Biscoito</button>
+    </section>
+    <div class="modal">
+      <h1 id="message">""</h1>
+    </div>
+  </body>
+  <script>
+    document.getElementById("home").classList.remove("action");
+    document.getElementById("fortune").classList.add("action");
+
+    function trocar() {
+      document.getElementById("img").src = "./img/cookiee-animation.gif";
+      document.getElementById("img").style.width = "600px";
+      document.getElementById("open-cookiee").style.display = "none";
+
+      fetch("http://localhost:8080/phrases")
+        .then((response) => response.text())
+        .then((data) => {
+          console.log(data);
+          document.getElementById("message").textContent = data;
+        })
+        .catch((error) => {
+          console.error("Erro ao obter frase:", error);
+        });
+
+      const modal = document.querySelector(".modal");
+      const atualyStyle = modal.style.display;
+
+      setTimeout(() => {
+        if (atualyStyle == "block") {
+          modal.style.display = "none";
+        } else {
+          modal.style.display = "flex";
+          modal.style.justifyContent = "center";
+          modal.style.alignItems = "center";
+        }
+      }, 3200);
+    }
+  </script>
+</html>
