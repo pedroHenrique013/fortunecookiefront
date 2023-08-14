@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../style.css" />
     <title>Document</title>
   </head>
   <body>
@@ -12,7 +12,7 @@
         <img
           class="cookie"
           id="img-cookiee"
-          src="./img/biscoito-da-sorte.png"
+          src="../img/biscoito-da-sorte.png"
           alt="biscoito da sorte"
         />Fortune Cookie
       </p>
@@ -25,7 +25,7 @@
       <img
         class="cookiee-open"
         id="img"
-        src="./img/biscoito.png"
+        src="../img/biscoito.png"
         alt="Biscoito Chines"
       />
       <button id="open-cookiee" onclick="trocar()">Abrir Biscoito</button>
@@ -39,7 +39,7 @@
     document.getElementById("fortune").classList.add("action");
 
     function trocar() {
-      document.getElementById("img").src = "./img/cookiee-animation.gif";
+      document.getElementById("img").src = "../img/cookiee-animation.gif";
       document.getElementById("img").style.width = "600px";
       document.getElementById("open-cookiee").style.display = "none";
 
