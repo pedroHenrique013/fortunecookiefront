@@ -17,8 +17,7 @@
         />Fortune Cookie
       </p>
       <ul>
-        <li><a id="home" class="action" href="./home.html">Inicio</a></li>
-        <li><a id="fortune" class="" href="./fortune.html">Sorte</a></li>
+        <li><a id="home" class="action" href="../index.html">Inicio</a></li>
       </ul>
     </header>
     <section class="container">
@@ -35,36 +34,40 @@
     </div>
   </body>
   <script>
-    document.getElementById("home").classList.remove("action");
-    document.getElementById("fortune").classList.add("action");
+   // Função para trocar a imagem do cookie e exibir a mensagem
+function trocar() {
+  // Alterar a imagem do cookie
+  const imgElement = document.getElementById("img");
+  imgElement.src = "../img/cookiee-animation.gif";
+  imgElement.style.width = "600px";
+  
+  // Esconder o botão "Abrir Cookie"
+  document.getElementById("open-cookiee").style.display = "none";
 
-    function trocar() {
-      document.getElementById("img").src = "../img/cookiee-animation.gif";
-      document.getElementById("img").style.width = "600px";
-      document.getElementById("open-cookiee").style.display = "none";
+  // Fazer uma requisição para obter a frase do servidor
+  fetch("https://fortunecookieback.vercel.app/phrases")
+    .then((response) => response.text())
+    .then((data) => {
+      console.log(data);
+      // Exibir a frase obtida na página
+      document.getElementById("message").textContent = data;
 
-      fetch("http://localhost:8080/phrases")
-        .then((response) => response.text())
-        .then((data) => {
-          console.log(data);
-          document.getElementById("message").textContent = data;
-        })
-        .catch((error) => {
-          console.error("Erro ao obter frase:", error);
-        });
-
+      // Exibir o modal após 3.2 segundos
       const modal = document.querySelector(".modal");
-      const atualyStyle = modal.style.display;
-
       setTimeout(() => {
-        if (atualyStyle == "block") {
-          modal.style.display = "none";
-        } else {
-          modal.style.display = "flex";
-          modal.style.justifyContent = "center";
-          modal.style.alignItems = "center";
-        }
+        modal.style.display = "flex";
+        modal.style.justifyContent = "center";
+        modal.style.alignItems = "center";
       }, 3200);
-    }
+    })
+    .catch((error) => {
+      console.error("Erro ao obter frase:", error);
+    });
+}
+
+// Iniciar a página com a classe "action" no elemento "fortune"
+document.getElementById("home").classList.remove("action");
+document.getElementById("fortune").classList.add("action");
+
   </script>
 </html>
